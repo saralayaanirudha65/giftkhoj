@@ -27,3 +27,87 @@
 
 
 @media (max-width: 760px) { .shell { width: min(100% - 36px, 1160px); }.nav { min-height: 64px; }.brand { font-size: 23px; }.nav-links { display: none; }.nav-action { font-size: 11px; }.hero { display: flex; flex-direction: column; padding-top: 42px; min-height: 0; gap: 27px; }.hero-copy { padding: 0; }.hero h1 { font-size: 39px; letter-spacing: -1.5px; }.hero-photo { height: 355px; width: calc(100% - 23px); margin-left: auto; }.hero-note { align-self: initial; margin: -5px 0 45px; }.intro { display: block; padding: 55px 0 60px; }.intro .kicker { margin-bottom: 20px; }.intro-copy { font-size: 26px; }.picks-section { padding: 55px 0 60px; }.section-head { align-items: flex-end; margin-bottom: 27px; }.section-head .text-link { font-size: 0; border: 0; }.section-head .text-link span { font-size: 18px; }.picks-grid { grid-template-columns: 1fr; gap: 36px; }.pick-card:nth-child(2) { margin-top: 0; }.pick-image, .pick-card:first-child .pick-image { height: 310px; }.pick-card h3 { font-size: 22px; }.budget-section { padding: 57px 0; }.budget-layout { display: block; }.budget-section h2 { font-size: 33px; }.budget-links { width: 100%; margin-top: 35px; }.budget-links a { font-size: 19px; }.footer-inner { min-height: 95px; flex-wrap: wrap; gap: 8px 25px; }.footer-inner p { font-size: 10px; } }
+
+/* GiftKhoj mobile navigation */
+@media (max-width: 760px) {
+  .nav {
+    min-height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 0;
+    row-gap: 0;
+  }
+
+  .nav .brand {
+    order: 1;
+  }
+
+  .nav .nav-action {
+    order: 2;
+    font-size: 11px;
+  }
+
+  .nav .nav-links {
+    display: flex;
+    order: 3;
+    width: 100%;
+    flex-basis: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 13px 0;
+    border-top: 1px solid var(--line);
+    margin-top: 12px;
+  }
+
+  .nav-links a {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+}
+
+
+@media (max-width: 760px) {
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 25px 0;
+    min-height: auto;
+  }
+
+  .footer-inner .brand {
+    font-size: 25px;
+  }
+
+  .footer-inner p:first-of-type {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .footer-inner p:last-of-type {
+    margin: 0;
+    font-size: 11px;
+    order: 4;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+    width: 100%;
+    padding: 18px 0;
+    border-top: 1px solid #514944;
+    order: 3;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+  }
+}
+
+
