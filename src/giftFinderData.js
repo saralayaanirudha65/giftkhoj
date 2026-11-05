@@ -1,27 +1,111 @@
-  // Development-only catalogue entries. Do not treat names, prices, or retailers as verified listings.
-  // productUrl and affiliateUrl are intentionally separate: affiliateUrl takes precedence only after verification.
-  const createDevelopmentProduct = ({ id, name, description, price, image, imageAlt, category, recipient, retailer }) => ({
-    id, name, description, price, image, imageAlt, category, recipient, retailer,
-    productUrl: null,
-    affiliateUrl: null,
-    isDevelopment: true,
-  })
 
-  export const developmentProducts = [
-    createDevelopmentProduct({ id: 1, name: 'Hand-painted diya set', description: 'A small lighting idea for the family home.', recipient: 'family', category: 'home', price: 380, retailer: 'Amazon', image: null, imageAlt: 'Several clay diyas glowing with warm light' }),
-    createDevelopmentProduct({ id: 2, name: 'Festive sweets box', description: 'An easy host-gift idea for a Diwali visit.', recipient: 'host', category: 'food', price: 650, retailer: 'Flipkart', image: null, imageAlt: 'Neutral placeholder for a festive sweets gift idea' }),
-    createDevelopmentProduct({ id: 3, name: 'Brass serving accent', description: 'A considered addition to a festive table.', recipient: 'family', category: 'home', price: 950, retailer: 'Other', image: null, imageAlt: 'Neutral placeholder for a brass home decor idea' }),
-    createDevelopmentProduct({ id: 4, name: 'A small festive keepsake', description: 'A thoughtful option for a close friend.', recipient: 'friend', category: 'keepsake', price: 420, retailer: 'Amazon', image: null, imageAlt: 'Neutral placeholder for a festive keepsake idea' }),
-    createDevelopmentProduct({ id: 5, name: 'Diya and light collection', description: 'A simple gift idea for a colleague.', recipient: 'colleague', category: 'home', price: 780, retailer: 'Flipkart', image: null , imageAlt: 'Several clay diyas glowing with warm light' }),
-    createDevelopmentProduct({ id: 6, name: 'Festive table detail', description: 'A homeware idea for someone hosting.', recipient: 'host', category: 'home', price: 1200, retailer: 'Other', image: null, imageAlt: 'Neutral placeholder for a festive table gift idea' }),
-  ]
+const AMAZON_TAG = 'giftkhoj-21'
 
-  export function filterProducts(products, selected) {
-    return products.filter((product) => (
-      (!selected.recipient || product.recipient === selected.recipient) &&
-      (!selected.category || product.category === selected.category) &&
-      (!selected.budget || product.price <= Number(selected.budget))
-    ))
+const amazonSearchUrl = (query) => {
+  const search = encodeURIComponent(query)
+  return `https://www.amazon.in/s?k=${search}&tag=${AMAZON_TAG}`
+}
+
+const createProduct = ({
+  id,
+  name,
+  description,
+  category,
+  recipient,
+  search,
+  imageAlt,
+}) => {
+  const affiliateUrl = amazonSearchUrl(search)
+
+  return {
+    id,
+    name,
+    description,
+    price: null,
+    image: null,
+    imageAlt,
+    category,
+    recipient,
+    retailer: 'Amazon',
+    productUrl: affiliateUrl,
+    affiliateUrl,
+    isDevelopment: false,
   }
+}
 
-  export const getPurchaseUrl = (product) => product.affiliateUrl || product.productUrl
+export const developmentProducts = [
+  createProduct({
+    id: 1,
+    name: 'Decorative Diya Set',
+    description: 'Traditional diyas to brighten up the family home.',
+    recipient: 'family',
+    category: 'home',
+    search: 'decorative diya set for diwali',
+    imageAlt: 'Decorative diya lamps for Diwali',
+  }),
+
+  createProduct({
+    id: 2,
+    name: 'Festive Gift Hamper',
+    description: 'A ready-to-gift hamper for a festive visit.',
+    recipient: 'host',
+    category: 'food',
+    search: 'diwali sweets dry fruits gift hamper',
+    imageAlt: 'Festive sweets and dry fruits gift hamper',
+  }),
+
+  createProduct({
+    id: 3,
+    name: 'Brass Home Decor',
+    description: 'A traditional home accent for someone special.',
+    recipient: 'family',
+    category: 'home',
+    search: 'brass home decor diya gift',
+    imageAlt: 'Traditional brass home decor',
+  }),
+
+  createProduct({
+    id: 4,
+    name: 'Festive Keepsake',
+    description: 'A small festive surprise for a close friend.',
+    recipient: 'friend',
+    category: 'keepsake',
+    search: 'diwali gift keepsake for friends',
+    imageAlt: 'Festive keepsake gift',
+  }),
+
+  createProduct({
+    id: 5,
+    name: 'Decorative String Lights',
+    description: 'A cheerful lighting gift for a colleague.',
+    recipient: 'colleague',
+    category: 'home',
+    search: 'decorative led string lights for diwali',
+    imageAlt: 'Warm decorative LED string lights',
+  }),
+
+  createProduct({
+    id: 6,
+    name: 'Festive Table Decor',
+    description: 'A thoughtful homeware gift for someone who loves hosting.',
+    recipient: 'host',
+    category: 'home',
+    search: 'diwali festive table decor gift',
+    imageAlt: 'Festive table decoration',
+  }),
+]
+
+export function filterProducts(products, selected) {
+  return products.filter((product) => (
+    (!selected.recipient || product.recipient === selected.recipient) &&
+    (!selected.category || product.category === selected.category) &&
+    (
+      !selected.budget ||
+      product.price == null ||
+      product.price <= Number(selected.budget)
+    )
+  ))
+}
+
+export const getPurchaseUrl = (product) =>
+  product.affiliateUrl || product.productUrl
