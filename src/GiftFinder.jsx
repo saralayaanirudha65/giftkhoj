@@ -187,8 +187,15 @@ function GiftFinder({ products = developmentProducts }) {
           {results.length} {results.length === 1 ? 'idea' : 'ideas'} to
           consider
           <span>
-            Gift suggestions · Prices and availability shown on Amazon
+            Gift suggestions · Check Amazon for current prices and availability
           </span>
+        </p>
+
+        <p className="finder-disclosure">
+          As an Amazon Associate I earn from qualifying purchases.
+          Some links on GiftKhoj are affiliate links. We may earn a
+          commission from qualifying purchases at no additional cost
+          to you.
         </p>
 
         {results.length ? (
@@ -210,10 +217,6 @@ function GiftFinder({ products = developmentProducts }) {
           </div>
         )}
 
-        <p className="finder-disclosure">
-          As an Amazon Associate, GiftKhoj may earn from qualifying
-          purchases. Product prices and availability can change.
-        </p>
       </div>
     </section>
   )
