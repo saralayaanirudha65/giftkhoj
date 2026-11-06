@@ -15,8 +15,9 @@ const createProduct = ({
   search,
   image,
   imageAlt,
+  customAffiliateUrl,
 }) => {
-  const affiliateUrl = amazonSearchUrl(search)
+  const affiliateUrl = customAffiliateUrl || amazonSearchUrl(search)
 
   return {
     id,
@@ -44,6 +45,7 @@ export const developmentProducts = [
     search: 'decorative diya set for diwali',
     image: '/images/diya-set.jpg',
     imageAlt: 'Decorative diya lamps for Diwali',
+    customAffiliateUrl: 'https://link.amazon/B0gTmmGiG',
   }),
 
   createProduct({
