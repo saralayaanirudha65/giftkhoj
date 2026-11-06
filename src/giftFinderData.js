@@ -13,6 +13,7 @@ const createProduct = ({
   category,
   recipient,
   search,
+  image,
   imageAlt,
 }) => {
   const affiliateUrl = amazonSearchUrl(search)
@@ -22,7 +23,7 @@ const createProduct = ({
     name,
     description,
     price: null,
-    image: null,
+    image,
     imageAlt,
     category,
     recipient,
@@ -41,6 +42,7 @@ export const developmentProducts = [
     recipient: 'family',
     category: 'home',
     search: 'decorative diya set for diwali',
+    image: '/images/diya-set.jpg',
     imageAlt: 'Decorative diya lamps for Diwali',
   }),
 
@@ -51,6 +53,7 @@ export const developmentProducts = [
     recipient: 'host',
     category: 'food',
     search: 'diwali sweets dry fruits gift hamper',
+    image: '/images/gift-hamper.jpg',
     imageAlt: 'Festive sweets and dry fruits gift hamper',
   }),
 
@@ -61,6 +64,7 @@ export const developmentProducts = [
     recipient: 'family',
     category: 'home',
     search: 'brass home decor diya gift',
+    image: '/images/brass-decor.jpg',
     imageAlt: 'Traditional brass home decor',
   }),
 
@@ -71,6 +75,7 @@ export const developmentProducts = [
     recipient: 'friend',
     category: 'keepsake',
     search: 'diwali gift keepsake for friends',
+    image: '/images/keepsake.jpg',
     imageAlt: 'Festive keepsake gift',
   }),
 
@@ -81,6 +86,7 @@ export const developmentProducts = [
     recipient: 'colleague',
     category: 'home',
     search: 'decorative led string lights for diwali',
+    image: '/images/string-lights.jpg',
     imageAlt: 'Warm decorative LED string lights',
   }),
 
@@ -91,6 +97,7 @@ export const developmentProducts = [
     recipient: 'host',
     category: 'home',
     search: 'diwali festive table decor gift',
+    image: '/images/table-decor.jpg',
     imageAlt: 'Festive table decoration',
   }),
 ]
